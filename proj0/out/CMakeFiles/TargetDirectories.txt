@@ -1,0 +1,5 @@
+/home/compsci261p/projects/proj0/out/CMakeFiles/rebuild_cache.dir
+/home/compsci261p/projects/proj0/out/CMakeFiles/a.out.gtest.dir
+/home/compsci261p/projects/proj0/out/CMakeFiles/a.out.exp.dir
+/home/compsci261p/projects/proj0/out/CMakeFiles/edit_cache.dir
+/home/compsci261p/projects/proj0/out/CMakeFiles/a.out.app.dir
