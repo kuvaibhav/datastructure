@@ -80,4 +80,21 @@ TEST(QueueTest, isEmpty_When_Queue_is_not_Empty)
 	EXPECT_FALSE( a.isEmpty() == true );
 }
 
+TEST(QueueTest, Size_When_Queue_is_not_Empty)
+{
+	LLQueue<int> a;
+	a.enqueue(5);
+	a.enqueue(3);
+	a.dequeue();
+	EXPECT_TRUE( a.size() == 1 );
+}
+
+TEST(QueueTest, Size_When_Queue_is_Empty)
+{
+	LLQueue<int> a;
+	a.enqueue(3);
+	a.dequeue();
+	EXPECT_TRUE( a.size() == 0 );
+}
+
 }

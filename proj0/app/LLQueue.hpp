@@ -121,4 +121,18 @@ bool LLQueue<Object>::isEmpty() const noexcept{
     return false;
 }
 
+template<typename Object>
+size_t LLQueue<Object>::size() const noexcept{
+	if (fron == nullptr) {
+		return 0;
+	} else {
+		int size=1;
+		Node<Object> *t = fron;
+		while(t->next != nullptr) {
+			size = size + 1;
+		}
+		return size;
+	}
+}
+
 #endif 
