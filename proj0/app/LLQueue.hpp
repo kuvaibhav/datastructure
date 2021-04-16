@@ -25,8 +25,8 @@ class LLQueue
 private:
 	// fill in private member data here
 	Object o;
-	Object *fron;
-	Object *rear;
+	Node<Object> *fron;
+	Node<Object> *rear;
 
 public:
 	LLQueue();
