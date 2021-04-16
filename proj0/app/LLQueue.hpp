@@ -62,7 +62,17 @@ public:
 // TODO:  Fill in the functions here. 
 template<typename Object>
 void LLQueue<Object>::dequeue() {
-	return;
+	if (fron == nullptr) {
+		throw QueueEmptyException("Error ! Queue is empty");
+	}
+	else {
+		Node<Object>* t = fron;
+		fron = fron->next;
+		if (fron == nullptr) {
+			rear = nullptr;
+		}
+		delete t;
+	}
 }
 
 template<typename Object>
@@ -73,9 +83,17 @@ LLQueue<Object>::LLQueue() {
 
 template<typename Object>
 void LLQueue<Object>::enqueue(const Object & elem) {
-	cout << "enqueuing something" << endl;
-	return;
-}
+	Node<Object>* t = new Node<Object>;
+	t->data =  elem;
+	t->next = nullptr;
+	if (fron == nullptr) {
+		fron = t;
+		rear = t;
+	} else {
+		rear->next = t;
+		rear = t;
+		}
+	}
 
 template<typename Object>
 Object & LLQueue<Object>::front() {
@@ -93,6 +111,14 @@ const Object & LLQueue<Object>::front() const {
 	} else {
 		return fron->data;
 	}
+}
+
+template<typename Object>
+bool LLQueue<Object>::isEmpty() const noexcept{
+	if (fron == nullptr){
+        return true;
+    }
+    return false;
 }
 
 #endif 
