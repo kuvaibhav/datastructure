@@ -79,7 +79,20 @@ void LLQueue<Object>::enqueue(const Object & elem) {
 
 template<typename Object>
 Object & LLQueue<Object>::front() {
-	return o;
+	if (fron == nullptr) {
+		throw QueueEmptyException("Error! Queue is empty");
+	} else {
+		return fron->data;
+	}
+}
+
+template<typename Object>
+const Object & LLQueue<Object>::front() const {
+	if (fron == nullptr) {
+		throw QueueEmptyException("Error! Queue is empty");
+	} else {
+		return fron->data;
+	}
 }
 
 #endif 

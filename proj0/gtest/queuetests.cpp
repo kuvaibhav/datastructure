@@ -39,4 +39,10 @@ TEST(QueueTest, QueueTest3)
 	EXPECT_TRUE( a.front() == 3 );
 }
 
+TEST(QueueTest, Front_When_Queue_is_Empty)
+{
+	LLQueue<int> a;
+	EXPECT_THROW( a.front(), QueueEmptyException);
+}
+
 }
