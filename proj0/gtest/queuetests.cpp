@@ -139,4 +139,81 @@ TEST(QueueTest, AssignmentInteger)
 	EXPECT_TRUE( b.front() == 2);
 }
 
+TEST(QueueTest, AssignmentNonEmptySize)
+{
+	LLQueue<int> a;
+	LLQueue<int> b;
+	a.enqueue(1);
+	b.enqueue(2);
+	a.enqueue(3);
+	b.enqueue(4);
+	a.enqueue(5);
+	b.enqueue(6);
+	a = b;
+
+	EXPECT_FALSE( a.size() == 6);
+}
+
+TEST(QueueTest, AssignmentIntegerNonEmpty)
+{
+	LLQueue<int> a;
+	LLQueue<int> b;
+	a.enqueue(1);
+	b.enqueue(2);
+	a.enqueue(3);
+	b.enqueue(4);
+	a.enqueue(5);
+	b.enqueue(6);
+	a = b;
+
+	EXPECT_TRUE( a.front() == 2);
+	EXPECT_TRUE( a.front() == 1);
+}
+
+TEST(QueueTest, AssignmentIntegerNonEmptyTwo)
+{
+	LLQueue<int> a;
+	LLQueue<int> b;
+	a.enqueue(1);
+	b.enqueue(2);
+	a.enqueue(3);
+	b.enqueue(4);
+	a.enqueue(5);
+	b.enqueue(6);
+	a = b;
+
+	EXPECT_FALSE( a.front() == 1);
+}
+
+TEST(QueueTest, AssignmentIntegerNonEmptySizeTwo)
+{
+	LLQueue<int> a;
+	LLQueue<int> b;
+	a.enqueue(1);
+	b.enqueue(2);
+	a.enqueue(3);
+	b.enqueue(4);
+	a.enqueue(5);
+	b.enqueue(6);
+	a = b;
+
+	EXPECT_TRUE( a.size() == 3);
+}
+
+TEST(QueueTest, SimpleSizeTest)
+{
+	LLQueue<std::string> a;
+	a.enqueue("abc");
+	a.enqueue("def");
+	a.enqueue("ghi");
+	a.enqueue("jkl");
+	a.enqueue("mno");
+	a.enqueue("pqr");
+	a.dequeue();
+	a.dequeue();
+	a.enqueue("stu");
+
+	EXPECT_TRUE( a.size() == 5);
+}
+
 }

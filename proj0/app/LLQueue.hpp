@@ -35,7 +35,15 @@ public:
 	// Be sure to do a "deep copy" -- if I 
 	// make a copy and modify one, it should not affect the other. 
 	LLQueue(const LLQueue & st);
-	//LLQueue & operator=(const LLQueue & st);
+	LLQueue & operator=(const LLQueue & st) {
+		Node<Object> *t = st.fron;
+		while(t!=nullptr) {
+			enqueue(t->data);
+			t = t->next;
+		}
+		return *this;
+	}
+
 	~LLQueue()
 	{
 		// You need to implement the destructor also.
@@ -65,6 +73,20 @@ public:
 };
 
 // TODO:  Fill in the functions here.
+
+// template<typename Object>
+// LLQueue<Object>& LLQueue<Object>::operator= (const LLQueue & st) {
+// 	if(this == &st) {
+// 		return *this;
+// 	}
+// 	while (st.fron != nullptr) {
+// 			Node<Object>* dupl = st.fron;
+// 			st.fron = st.fron->next;
+// 			delete dupl;
+// 		}
+// 	LLQueue a(st);
+// }
+
 template<typename Object>
 LLQueue<Object>::LLQueue(const LLQueue & st) {
 	fron = nullptr;
@@ -143,10 +165,12 @@ size_t LLQueue<Object>::size() const noexcept{
 	if (fron == nullptr) {
 		return 0;
 	} else {
+		std::cout<<"Entered Size() Else Method" << endl;
 		int size=1;
 		Node<Object> *t = fron;
 		while(t->next != nullptr) {
 			size = size + 1;
+			t = t->next;
 		}
 		return size;
 	}
