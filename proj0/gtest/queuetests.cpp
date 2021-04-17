@@ -167,7 +167,6 @@ TEST(QueueTest, AssignmentIntegerNonEmpty)
 	a = b;
 
 	EXPECT_TRUE( a.front() == 2);
-	EXPECT_TRUE( a.front() == 1);
 }
 
 TEST(QueueTest, AssignmentIntegerNonEmptyTwo)

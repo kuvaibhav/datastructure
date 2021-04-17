@@ -36,6 +36,14 @@ public:
 	// make a copy and modify one, it should not affect the other. 
 	LLQueue(const LLQueue & st);
 	LLQueue & operator=(const LLQueue & st) {
+		if (this == &st) {
+			return *this;
+		}
+		while(fron != nullptr) {
+			Node<Object> * dupl = fron;
+			fron = fron->next;
+			delete dupl;
+		}
 		Node<Object> *t = st.fron;
 		while(t!=nullptr) {
 			enqueue(t->data);
