@@ -97,4 +97,34 @@ TEST(QueueTest, Size_When_Queue_is_Empty)
 	EXPECT_TRUE( a.size() == 0 );
 }
 
+TEST(QueueTest, CopyConstructorString)
+{
+	LLQueue<std::string> a;
+	a.enqueue("first");
+	a.enqueue("second");
+	a.dequeue();
+	LLQueue<std::string> b(a);
+	a.enqueue("third");
+	a.enqueue("fourth");
+	a.dequeue();
+	b.front();
+	std::cout << b.front() << std::endl;
+	EXPECT_TRUE( b.front() == "second");
+}
+
+TEST(QueueTest, CopyConstructorInteger)
+{
+	LLQueue<int> a;
+	a.enqueue(1);
+	a.enqueue(2);
+	a.dequeue();
+	LLQueue<int> b(a);
+	a.enqueue(3);
+	a.enqueue(4);
+	a.dequeue();
+	b.front();
+	std::cout << b.front() << std::endl;
+	EXPECT_TRUE( b.front() == 2);
+}
+
 }

@@ -59,7 +59,21 @@ public:
 	void dequeue();
 };
 
-// TODO:  Fill in the functions here. 
+// TODO:  Fill in the functions here.
+template<typename Object>
+LLQueue<Object>::LLQueue(const LLQueue & st) {
+	fron = nullptr;
+	rear = nullptr;
+	std::cout<<"Constructor was called for sure"<< std::endl;
+	std::cout<<"The value that was passed was"<< st.front() << std::endl;
+	std::cout<<"Last line of constructor"<< std::endl;
+	Node<Object>* temp = st.fron;
+	while(temp != nullptr) {
+		enqueue(temp->data);
+		temp = temp->next;
+	}
+}
+
 template<typename Object>
 void LLQueue<Object>::dequeue() {
 	if (fron == nullptr) {
@@ -109,6 +123,7 @@ const Object & LLQueue<Object>::front() const {
 	if (fron == nullptr) {
 		throw QueueEmptyException("Error! Queue is empty");
 	} else {
+		std::cout<<"Value of fron->data is: "<< fron->data << std::endl;
 		return fron->data;
 	}
 }
