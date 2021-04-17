@@ -108,7 +108,6 @@ TEST(QueueTest, CopyConstructorString)
 	a.enqueue("fourth");
 	a.dequeue();
 	b.front();
-	std::cout << b.front() << std::endl;
 	EXPECT_TRUE( b.front() == "second");
 }
 
@@ -123,7 +122,20 @@ TEST(QueueTest, CopyConstructorInteger)
 	a.enqueue(4);
 	a.dequeue();
 	b.front();
-	std::cout << b.front() << std::endl;
+	EXPECT_TRUE( b.front() == 2);
+}
+
+TEST(QueueTest, AssignmentInteger)
+{
+	LLQueue<int> a;
+	a.enqueue(1);
+	a.enqueue(2);
+	a.dequeue();
+	LLQueue<int> b = a;
+	a.enqueue(3);
+	a.enqueue(4);
+	a.dequeue();
+	b.front();
 	EXPECT_TRUE( b.front() == 2);
 }
 

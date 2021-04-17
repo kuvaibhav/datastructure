@@ -35,10 +35,15 @@ public:
 	// Be sure to do a "deep copy" -- if I 
 	// make a copy and modify one, it should not affect the other. 
 	LLQueue(const LLQueue & st);
-	LLQueue & operator=(const LLQueue & st);
+	//LLQueue & operator=(const LLQueue & st);
 	~LLQueue()
 	{
 		// You need to implement the destructor also.
+		while (fron != nullptr) {
+			Node<Object> * dupl = fron;
+			fron = fron->next;
+			delete dupl;
+		}
 	}
 
 	size_t size() const noexcept;
@@ -64,9 +69,6 @@ template<typename Object>
 LLQueue<Object>::LLQueue(const LLQueue & st) {
 	fron = nullptr;
 	rear = nullptr;
-	std::cout<<"Constructor was called for sure"<< std::endl;
-	std::cout<<"The value that was passed was"<< st.front() << std::endl;
-	std::cout<<"Last line of constructor"<< std::endl;
 	Node<Object>* temp = st.fron;
 	while(temp != nullptr) {
 		enqueue(temp->data);
