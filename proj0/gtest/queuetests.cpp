@@ -215,4 +215,21 @@ TEST(QueueTest, SimpleSizeTest)
 	EXPECT_TRUE( a.size() == 5);
 }
 
+TEST(QueueTest, AssignmentAndDequeue)
+{
+	LLQueue<float> a;
+	a.enqueue(1.234);
+	a.enqueue(2.456);
+	a.enqueue(3.4543);
+	LLQueue<float> b;
+	b.enqueue(12.456);
+	b = a;
+	b.dequeue();
+	b.dequeue();
+	b.dequeue();
+
+	EXPECT_TRUE(b.isEmpty() == true);
+	EXPECT_FALSE(a.isEmpty() == true);
+}
+
 }
