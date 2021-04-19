@@ -82,19 +82,6 @@ public:
 
 // TODO:  Fill in the functions here.
 
-// template<typename Object>
-// LLQueue<Object>& LLQueue<Object>::operator= (const LLQueue & st) {
-// 	if(this == &st) {
-// 		return *this;
-// 	}
-// 	while (st.fron != nullptr) {
-// 			Node<Object>* dupl = st.fron;
-// 			st.fron = st.fron->next;
-// 			delete dupl;
-// 		}
-// 	LLQueue a(st);
-// }
-
 template<typename Object>
 LLQueue<Object>::LLQueue(const LLQueue & st) {
 	fron = nullptr;
@@ -155,7 +142,6 @@ const Object & LLQueue<Object>::front() const {
 	if (fron == nullptr) {
 		throw QueueEmptyException("Error! Queue is empty");
 	} else {
-		std::cout<<"Value of fron->data is: "<< fron->data << std::endl;
 		return fron->data;
 	}
 }
@@ -173,7 +159,6 @@ size_t LLQueue<Object>::size() const noexcept{
 	if (fron == nullptr) {
 		return 0;
 	} else {
-		std::cout<<"Entered Size() Else Method" << endl;
 		int size=1;
 		Node<Object> *t = fron;
 		while(t->next != nullptr) {

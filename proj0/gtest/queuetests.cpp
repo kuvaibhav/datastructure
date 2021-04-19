@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "LLQueue.hpp"
+#include <typeinfo>
 
 
 namespace{
@@ -230,6 +231,87 @@ TEST(QueueTest, AssignmentAndDequeue)
 
 	EXPECT_TRUE(b.isEmpty() == true);
 	EXPECT_FALSE(a.isEmpty() == true);
+}
+
+TEST(QueueTest, constQueueCheck)
+{
+	LLQueue<int> a;
+	a.enqueue(1);
+	a.enqueue(2);
+	a.enqueue(3);
+	const LLQueue<int> b = a;
+	int val = b.front();
+	EXPECT_TRUE(val == 1);
+}
+
+TEST(QueueTest, constQueueCheckFloat)
+{
+	LLQueue<float> a;
+	a.enqueue(1.0);
+	a.enqueue(2.2);
+	a.enqueue(3.2);
+	const LLQueue<float> b = a;
+	float val = b.front();
+	EXPECT_TRUE(val == 1.0);
+}
+
+TEST(QueueTest, constQueueCheckFloatv2)
+{
+	LLQueue<float> a;
+	a.enqueue((float)1.567);
+	a.enqueue(2.2);
+	a.enqueue(3.2);
+	const LLQueue<float> b = a;
+	float val = b.front();
+	EXPECT_TRUE(val == (float)1.567);
+}
+
+TEST(QueueTest, constQueueCheckdouble)
+{
+	LLQueue<double> a;
+	a.enqueue(1.567);
+	a.enqueue(2.2);
+	a.enqueue(3.2);
+	const LLQueue<double> b = a;
+	float val = b.front();
+	std::cout<<val<<endl;
+	std::cout << typeid(val).name() << endl;
+	EXPECT_TRUE(val == (float)1.567);
+}
+
+TEST(QueueTest, copyconstructorv2)
+{
+	LLQueue<std::string> a;
+	a.enqueue("first");
+	a.enqueue("second");
+	a.enqueue("third");
+	LLQueue<std::string> b(a);
+	a.dequeue();
+	b.enqueue("b_fourth");
+	EXPECT_TRUE(b.front() == "first");
+	EXPECT_TRUE(a.front() == "second");
+	EXPECT_TRUE(a.size() == 2);
+	EXPECT_TRUE(b.size() == 4);
+}
+
+TEST(QueueTest, CopyConstructorAndAssignment)
+{
+	LLQueue<std::string> a;
+	a.enqueue("first");
+	a.enqueue("second");
+	a.enqueue("third");
+	LLQueue<std::string> b(a);
+	a.dequeue();
+	b.enqueue("b_fourth");
+	LLQueue<std::string> c = b;
+	LLQueue<std::string> d = a;
+	c = d;
+	EXPECT_TRUE(b.front() == "first");
+	EXPECT_TRUE(a.front() == "second");
+	EXPECT_TRUE(a.size() == 2);
+	EXPECT_TRUE(b.size() == 4);
+	EXPECT_TRUE(c.size() == 2);
+	EXPECT_TRUE(c.front() == "second");
 }
 
 }
