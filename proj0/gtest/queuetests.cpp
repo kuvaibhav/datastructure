@@ -314,4 +314,62 @@ TEST(QueueTest, CopyConstructorAndAssignment)
 	EXPECT_TRUE(c.front() == "second");
 }
 
+TEST(QueueTest, QueueTest8)
+{
+	LLQueue<char> a;
+	EXPECT_THROW( a.front() , QueueEmptyException);
+	EXPECT_THROW( a.dequeue() , QueueEmptyException);
+}
+
+TEST(QueueTest, QueueTest9)
+{
+	LLQueue<float> a;
+	a.enqueue((float)5.0);
+	a.enqueue((float)3.1);
+	EXPECT_TRUE(a.front() == (float)5.0);
+	EXPECT_TRUE(a.size() == 2 );
+
+	a.dequeue();
+	EXPECT_TRUE(a.front() == (float)3.1);
+
+	a.dequeue();
+	EXPECT_TRUE( a.size() == 0 );
+	EXPECT_THROW(a.dequeue(), QueueEmptyException);
+	EXPECT_TRUE( a.size() == 0 );
+
+}
+
+TEST(QueueTest, enqueueDequeue)
+{
+	LLQueue<double> a;
+	a.enqueue(1.0);
+	a.enqueue(2.2);
+	a.enqueue(3.9);
+	const LLQueue<double> b = a;
+	float val = b.front();
+	EXPECT_TRUE(b.size() == 3);
+	EXPECT_TRUE(val == 1.0);
+	val = a.front();
+	EXPECT_TRUE(val == 1.0);
+	a.dequeue();
+	EXPECT_TRUE(a.front() == 2.2);
+	a.dequeue();
+	a.enqueue(4.0);
+	EXPECT_TRUE(a.front() == 3.9);
+	a.enqueue(5.0);
+	EXPECT_TRUE(a.front() == 3.9);
+	a.dequeue();
+	a.enqueue(6.0);
+	EXPECT_TRUE(a.front() == 4.0);
+	a.dequeue();
+	EXPECT_TRUE(a.front() == 5.0);
+	EXPECT_TRUE(a.size() == 2);
+	a.dequeue();
+	a.dequeue();
+	EXPECT_THROW(a.front(), QueueEmptyException);
+	a.enqueue(6.0);
+	EXPECT_TRUE(a.front() == 6.0);
+
+}
+
 }
